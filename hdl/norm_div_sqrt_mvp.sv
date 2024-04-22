@@ -201,7 +201,7 @@ module norm_div_sqrt_mvp
        begin
          if(Div_enable_SI&&Zero_b_SI)
            begin
-              Div_Zero_S=1'b1;
+              Div_Zero_S=1'b0;
               Exp_OF_S=1'b0;
               Exp_UF_S=1'b0;
               Mant_res_norm_D={1'b0,C_MANT_NAN_FP64};
@@ -478,7 +478,7 @@ module norm_div_sqrt_mvp
           end
     end
 
-assign In_Exact_S = (~Full_precision_SI) | Mant_rounded_S;
+assign In_Exact_S = (~Full_precision_SI) | Mant_rounded_S | Exp_OF_S | Exp_UF_S;;
 assign Fflags_SO = {NV_OP_S,Div_Zero_S,Exp_OF_S,Exp_UF_S,In_Exact_S}; //{NV,DZ,OF,UF,NX}
 
 endmodule // norm_div_sqrt_mvp
